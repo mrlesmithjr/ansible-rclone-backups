@@ -4,7 +4,7 @@
     path: "{{ rclone_bin }}"
   register: _rclone_check
 
-- name: install | Capturing Installed RCLONE Version
+- name: install | Capturing Installed RCLONE Version # noqa 306
   shell: "{{ rclone_bin }} version | grep rclone | awk -Fv '{ print $2 }'"
   register: _rclone_installed_version
   changed_when: false

@@ -1,0 +1,43 @@
+---
+- name: install | Checking if RCLONE is Already Installed
+  stat:
+    path: "{{ rclone_bin }}"
+  register: _rclone_check
+
+- name: install | Capturing Installed RCLONE Version
+  shell: "{{ rclone_bin }} version | grep rclone | awk -Fv '{ print $2 }'"
+  register: _rclone_installed_version
+  changed_when: false
+  when: _rclone_check.stat.exists
+
+- name: install | Showing Current RCLONE Version Installed
+  debug:
+    var: _rclone_installed_version.stdout
+  when: _rclone_check.stat.exists
+
+- name: install | Installing unzip
+  package:
+    name: unzip
+    state: present
+  become: true
+
+- name: install | Extracting RCLONE {{ rclone_version }}
+  unarchive:
+    src: "{{ rclone_dl_src }}"
+    dest: /tmp
+    remote_src: true
+  become: true
+
+- name: install | Copying RCLONE to {{ rclone_bin }}
+  copy:
+    src: "/tmp/{{ rclone_archive.replace('.zip', '') }}/rclone"
+    dest: "{{ rclone_bin }}"
+    mode: u=rwx,g=rx,o=rx
+    remote_src: true
+  become: true
+
+- name: install | Configuring RCLONE
+  template:
+    src: rclone.conf.j2
+    dest: "{{ rclone_config }}"
+  become: true

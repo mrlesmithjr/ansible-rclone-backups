@@ -1,2 +1,18 @@
 ---
 # defaults file for ansible-rclone-backups
+
+rclone_archive: "rclone-v{{ rclone_version }}-linux-amd64.zip"
+rclone_bin: /usr/local/bin/rclone
+rclone_config: /root/.config/rclone/rclone.conf
+
+rclone_configs:
+  []
+  # - name: Backblaze
+  #   options:
+  #     account: 123456789abc
+  #     key: 0123456789abcdef0123456789abcdef0123456789
+  #     type: b2
+
+rclone_dl_src: "{{ rclone_url }}/v{{ rclone_version }}/{{ rclone_archive }}"
+rclone_url: https://downloads.rclone.org
+rclone_version: 1.52.2

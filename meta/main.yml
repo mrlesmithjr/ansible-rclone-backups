@@ -6,18 +6,22 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.8
 
-  # platforms:
-  # - name: Fedora
-  #   versions:
-  #   - all
-  #   - 25
-  # - name: SomePlatform
-  #   versions:
-  #   - all
-  #   - 1.0
-  #   - 7
-  #   - 99.99
+  platforms:
+  - name: Debian
+    versions:
+      - all
+  - name: EL
+    versions:
+      - all
+  - name: Fedora
+    versions:
+      - all
+  - name: Ubuntu
+    versions:
+      - all
 
-  galaxy_tags: []
+  galaxy_tags:
+    - system
+    - backups
 
 dependencies: []

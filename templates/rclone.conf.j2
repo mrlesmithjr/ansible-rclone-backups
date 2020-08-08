@@ -1,0 +1,7 @@
+{{ ansible_managed|comment }}
+{% for item in rclone_configs %}
+[{{ item.name }}]
+{%   for key, value in item.options.items() %}
+{{ key }} = {{ value }}
+{%   endfor %}
+{% endfor %}

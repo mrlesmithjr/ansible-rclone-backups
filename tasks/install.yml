@@ -1,4 +1,10 @@
 ---
+- name: install | Ensuring {{ rclone_config|dirname }} Exists
+  file:
+    path: "{{ rclone_config|dirname }}"
+    state: directory
+  become: true
+
 - name: install | Checking if RCLONE is Already Installed
   stat:
     path: "{{ rclone_bin }}"

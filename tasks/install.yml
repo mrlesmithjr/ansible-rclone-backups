@@ -29,9 +29,10 @@
 
 - name: install | Extracting RCLONE {{ rclone_version }}
   unarchive:
-    src: "{{ rclone_dl_src }}"
+    creates: "/tmp/{{ rclone_archive.replace('.zip', '') }}"
     dest: /tmp
     remote_src: true
+    src: "{{ rclone_dl_src }}"
   become: true
 
 - name: install | Copying RCLONE to {{ rclone_bin }}

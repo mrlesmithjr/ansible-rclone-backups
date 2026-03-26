@@ -1,4 +1,7 @@
-# ansible-rclone-backups
+> [!CAUTION]
+> **This project is archived and no longer maintained.**
+> Archived: 2026-03-26
+> Reason: Low community usage; no longer maintained# ansible-rclone-backups
 
 Ansible role to install/configure RCLONE for cloud storage backups
 
